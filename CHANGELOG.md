@@ -12,6 +12,8 @@ L'historique git reste la source de vérité pour ce qui précède.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-03
+
 ### Ajouté
 
 - **Dépendances système des builds Tauri Linux dans l'image**, dont `xdg-utils` (`xdg-mime`,

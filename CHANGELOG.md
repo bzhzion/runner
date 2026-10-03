@@ -12,6 +12,13 @@ L'historique git reste la source de vérité pour ce qui précède.
 
 ## [Unreleased]
 
+### Ajouté
+
+- **Dépendances système des builds Tauri Linux dans l'image**, dont `xdg-utils` (`xdg-mime`,
+  exigé par le bundler AppImage). Le build Linux x64 de hae-app 1.6.1 a échoué sur
+  `ofraid-bzhzion` puis `olivmama94-bzhzion` faute de `xdg-mime`, les workflows n'installant
+  qu'une partie des dépendances à la volée.
+
 ### Modifié
 
 - **`actions/checkout` et `actions/setup-node` passent en v7** dans les workflows : les versions

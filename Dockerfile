@@ -48,6 +48,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     php-cli \
     && rm -rf /var/lib/apt/lists/*
 
+# Dependances systeme des builds Tauri Linux (webview + bundlers deb/AppImage)
+#
+# Ajoute le 2026-10-03. Le build Linux x64 de hae-app 1.6.1 a echoue au tout dernier pas
+# (`xdg-mime binary not found`, bundler AppImage) sur `ofraid-bzhzion` puis sur
+# `olivmama94-bzhzion` : les workflows installaient a la volee une partie des dependances, et
+# ce qu'ils oubliaient ne se voyait que sur un runner qui ne l'avait pas deja. `xdg-utils`
+# fournit `xdg-mime`. Meme raison que pour PHP ci-dessus : ce qui est dans l'image survit au
+# re-enregistrement, ce qui est pose a la main ou par un job ne survit pas.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential file libxdo-dev libssl-dev \
+    libayatana-appindicator3-dev librsvg2-dev \
+    libwebkit2gtk-4.1-dev libgtk-3-dev \
+    xdg-utils \
+    && rm -rf /var/lib/apt/lists/*
+
 # Répertoire de travail persistable
 RUN mkdir -p /home/runner/.cache \
     && chown -R runner:runner /home/runner/.cache
